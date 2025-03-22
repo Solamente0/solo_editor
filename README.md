@@ -1,8 +1,9 @@
-# Solamente Elegant Code Editor
+# Solo Elegant Code Editor
 
 A lightweight, elegant code editor for the web with syntax highlighting, multiple language support, and various export options.
 
-![Solamente Editor Screenshot](assets/editor-screenshot.png)
+![Solo Editor Screenshot](assets/startup.png)
+![Solo Editor Screenshot](assets/editor.png)
 
 ## Features
 
