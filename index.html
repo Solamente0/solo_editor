@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Solamente Elegant Code Editor - A lightweight, elegant code editor for the web with syntax highlighting, multiple language support, and various export options.">
-        <meta name="author" content="Solamente">
-        <meta name="keywords" content="code editor, syntax highlighting, web editor, programming, developer tools">
-        <meta name="application-name" content="Solamente Elegant Code Editor">
-        <meta name="theme-color" content="#0A192F">
-        <meta property="og:title" content="Solamente Elegant Code Editor">
-        <meta property="og:description" content="A lightweight, elegant code editor for the web with syntax highlighting for 20+ languages">
-        <meta property="og:type" content="website">
-        <meta property="og:image" content="assets/editor-screenshot.png">
-        <title>Elegant Code Editor</title>
-        
-        <!-- External CSS Dependencies -->
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
-        
-        <!-- Application CSS -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/editor.css">
-        <link rel="stylesheet" href="css/modals.css">
-        <link rel="stylesheet" href="css/theme.css">
-        
-        <!-- Additional styles for loading screen -->
-        <style>
-            .bg-navy-blue {
-                background-color: #0A192F;
-            }
-            @keyframes pulse {
-                0%, 100% {
-                    opacity: 1;
-                }
-                50% {
-                    opacity: 0.7;
-                }
-            }
-            .animate-pulse {
-                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Solo Elegant Code Editor - A lightweight, elegant code editor for the web with syntax highlighting, multiple language support, and various export options.">
+    <meta name="author" content="Solamente">
+    <meta name="keywords" content="code editor, syntax highlighting, web editor, programming, developer tools">
+    <meta name="application-name" content="Solamente Elegant Code Editor">
+    <meta name="theme-color" content="#0A192F">
+    <meta property="og:title" content="Solo Elegant Code Editor">
+    <meta property="og:description" content="A lightweight, elegant code editor for the web with syntax highlighting for 20+ languages">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/editor-screenshot.png">
+    <title>Solo Elegant Code Editor</title>
+    
+    <!-- External CSS Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    
+    <!-- Application CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
 <body class="transition-colors bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-navy-blue flex flex-col items-center justify-center z-50">
+        <h1 class="text-4xl font-bold text-white mb-2">Solo Elegant Code Editor</h1>
+        <div class="text-xl text-blue-200">Version 1.8.1</div>
+        <div class="mt-8 relative">
+            <div class="w-64 h-2 bg-blue-800 rounded-full overflow-hidden">
+                <div id="loadingBar" class="h-full bg-blue-400 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+        <div id="loadingText" class="mt-4 text-blue-200 text-sm">Loading resources...</div>
+    </div>
+
     <div class="container mx-auto px-4 py-6">
         <!-- Header -->
         <header class="flex justify-between items-center mb-6">
             <div class="flex items-center">
-                <h1 class="text-2xl font-bold mr-4">Solamente Elegant Code Editor</h1>
+                <h1 class="text-2xl font-bold mr-4">Solo Elegant Code Editor</h1>
                 <div class="hidden sm:block">
                     <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">v1.0</span>
                 </div>
@@ -126,7 +120,7 @@
         <!-- Editor -->
         <div class="editor-container bg-white dark:bg-gray-800 rounded-b-lg shadow-sm">
             <div class="line-numbers transition-colors text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-850"></div>
-            <pre id="editor" class="relative pl-12 focus:outline-none transition-colors" contenteditable="true" spellcheck="false"></pre>
+            <pre id="editor" class="focus:outline-none transition-colors" contenteditable="true" spellcheck="false"></pre>
         </div>
 
         <!-- Status Bar -->
@@ -201,6 +195,24 @@
         <i id="toastIcon" class="fas fa-check mr-2"></i>
         <span id="toastMessage">Notification message</span>
     </div>
+
+    <!-- Additional styles for loading screen -->
+    <style>
+        .bg-navy-blue {
+            background-color: #0A192F;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
 
     <!-- External JS Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
