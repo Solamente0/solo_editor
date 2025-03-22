@@ -1,0 +1,55 @@
+/* Editor-specific styles */
+
+.editor-container {
+    position: relative;
+    height: calc(100vh - 10rem);
+    overflow: hidden;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+#editor {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 1rem;
+    padding-left: 3.5rem; /* Increased padding to make room for line numbers */
+    outline: none;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    white-space: pre;
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: embed;
+    position: relative;
+    z-index: 1;
+}
+
+.line-numbers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3rem;
+    overflow: hidden;
+    padding: 1rem 0.5rem;
+    text-align: right;
+    user-select: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.03);
+    z-index: 2; /* Higher z-index than the editor */
+}
+
+/* Editor focus state */
+#editor:focus {
+    outline: none;
+}
+
+/* Code block selection */
+#editor::selection {
+    background-color: rgba(100, 100, 255, 0.3);
+}
+
+#editor::-moz-selection {
+    background-color: rgba(100, 100, 255, 0.3);
+}

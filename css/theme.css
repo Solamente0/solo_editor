@@ -1,0 +1,76 @@
+/* Theme switching styles */
+
+/* Light theme (default) */
+:root {
+    --bg-primary: #f9fafb;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f3f4f6;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --border-color: #e5e7eb;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --tooltip-bg: #1f2937;
+    --tooltip-text: #ffffff;
+}
+
+/* Dark theme */
+.dark {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-color: #374151;
+    --accent-color: #3b82f6;
+    --accent-hover: #60a5fa;
+    --tooltip-bg: #e5e7eb;
+    --tooltip-text: #111827;
+}
+
+/* Theme classes for elements */
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+    background-color: var(--bg-tertiary);
+}
+
+.text-primary {
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+.border-themed {
+    border-color: var(--border-color);
+}
+
+.accent-color {
+    color: var(--accent-color);
+}
+
+.accent-bg {
+    background-color: var(--accent-color);
+}
+
+.accent-bg:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Theme-specific adjustments for highlight.js */
+.dark .hljs {
+    background-color: var(--bg-secondary);
+}
+
+/* Custom dark color for line numbers */
+.dark .gray-850 {
+    background-color: #18202e;
+}

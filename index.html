@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Solamente Elegant Code Editor - A lightweight, elegant code editor for the web with syntax highlighting, multiple language support, and various export options.">
+        <meta name="author" content="Solamente">
+        <meta name="keywords" content="code editor, syntax highlighting, web editor, programming, developer tools">
+        <meta name="application-name" content="Solamente Elegant Code Editor">
+        <meta name="theme-color" content="#0A192F">
+        <meta property="og:title" content="Solamente Elegant Code Editor">
+        <meta property="og:description" content="A lightweight, elegant code editor for the web with syntax highlighting for 20+ languages">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="assets/editor-screenshot.png">
+        <title>Elegant Code Editor</title>
+        
+        <!-- External CSS Dependencies -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+        
+        <!-- Application CSS -->
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/editor.css">
+        <link rel="stylesheet" href="css/modals.css">
+        <link rel="stylesheet" href="css/theme.css">
+        
+        <!-- Additional styles for loading screen -->
+        <style>
+            .bg-navy-blue {
+                background-color: #0A192F;
+            }
+            @keyframes pulse {
+                0%, 100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0.7;
+                }
+            }
+            .animate-pulse {
+                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+        </style>
+    </head>
+<body class="transition-colors bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-6">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold mr-4">Solamente Elegant Code Editor</h1>
+                <div class="hidden sm:block">
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded">v1.0</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <button id="helpBtn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i class="fas fa-question"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Toolbar -->
+        <div class="bg-white dark:bg-gray-800 rounded-t-lg shadow-sm p-2 flex flex-wrap items-center gap-2">
+            <!-- Language Selector -->
+            <div class="relative">
+                <select id="language" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="csharp">C#</option>
+                    <option value="php">PHP</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="go">Go</option>
+                    <option value="swift">Swift</option>
+                    <option value="kotlin">Kotlin</option>
+                    <option value="rust">Rust</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="sql">SQL</option>
+                    <option value="bash">Bash</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="xml">XML</option>
+                    <option value="json">JSON</option>
+                    <option value="yaml">YAML</option>
+                    <option value="markdown">Markdown</option>
+                </select>
+            </div>
+            
+            <!-- Font Size -->
+            <div class="relative">
+                <select id="fontSize" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2">
+                    <option value="12">12px</option>
+                    <option value="14" selected>14px</option>
+                    <option value="16">16px</option>
+                    <option value="18">18px</option>
+                    <option value="20">20px</option>
+                </select>
+            </div>
+
+            <!-- File Actions -->
+            <div class="flex items-center space-x-2 ml-auto">
+                <button id="newBtn" class="text-sm bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-lg px-3 py-1.5 flex items-center">
+                    <i class="fas fa-file-alt mr-1"></i> New
+                </button>
+                <button id="downloadBtn" class="text-sm bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-lg px-3 py-1.5 flex items-center">
+                    <i class="fas fa-download mr-1"></i> Download
+                </button>
+                <button id="screenshotBtn" class="text-sm bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-lg px-3 py-1.5 flex items-center">
+                    <i class="fas fa-camera mr-1"></i> Screenshot
+                </button>
+                <button id="pdfBtn" class="text-sm bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-lg px-3 py-1.5 flex items-center">
+                    <i class="fas fa-file-pdf mr-1"></i> PDF
+                </button>
+                <button id="shareBtn" class="text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-3 py-1.5 flex items-center">
+                    <i class="fas fa-share-alt mr-1"></i> Share
+                </button>
+            </div>
+        </div>
+
+        <!-- Editor -->
+        <div class="editor-container bg-white dark:bg-gray-800 rounded-b-lg shadow-sm">
+            <div class="line-numbers transition-colors text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-850"></div>
+            <pre id="editor" class="relative pl-12 focus:outline-none transition-colors" contenteditable="true" spellcheck="false"></pre>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="bg-gray-100 dark:bg-gray-800 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 p-2 mt-2 rounded-lg">
+            <div class="flex items-center">
+                <span id="lineCol">Line: 1, Column: 1</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="charCount">Characters: 0</span>
+                <span id="wordCount">Words: 0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full mx-4 max-h-[80vh] overflow-y-auto">
+            <div class="p-5 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editor Help</h3>
+            </div>
+            <div class="p-5">
+                <h4 class="font-medium text-lg mb-2 text-gray-900 dark:text-white">Keyboard Shortcuts</h4>
+                <ul class="space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+                    <li><kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">Tab</kbd> - Insert tab</li>
+                    <li><kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">Ctrl</kbd> + <kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">S</kbd> - Save/Download</li>
+                    <li><kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">Ctrl</kbd> + <kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">N</kbd> - New document</li>
+                </ul>
+                
+                <h4 class="font-medium text-lg mb-2 text-gray-900 dark:text-white">Features</h4>
+                <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+                    <li>Syntax highlighting for 20 languages</li>
+                    <li>Dark/Light mode toggle</li>
+                    <li>Export to file</li>
+                    <li>Generate screenshots</li>
+                    <li>Convert to PDF</li>
+                    <li>Share code via URL</li>
+                </ul>
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end">
+                <button id="closeHelpBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg w-full mx-4">
+            <div class="p-5 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Share Code</h3>
+            </div>
+            <div class="p-5">
+                <p class="mb-4 text-gray-700 dark:text-gray-300">Share your code with others using this link:</p>
+                <div class="flex">
+                    <input id="shareUrl" type="text" class="flex-grow px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-l-lg text-gray-900 dark:text-white" readonly>
+                    <button id="copyShareUrl" class="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">The link contains your code and will work for anyone. No sign-up required.</p>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end">
+                <button id="closeShareBtn" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 mr-2">Cancel</button>
+                <button id="confirmShareBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Copy & Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none flex items-center">
+        <i id="toastIcon" class="fas fa-check mr-2"></i>
+        <span id="toastMessage">Notification message</span>
+    </div>
+
+    <!-- External JS Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Highlight.js Languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/swift.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/kotlin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/typescript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/markdown.min.js"></script>
+    
+    <!-- Export Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- Application JS -->
+    <script src="js/utils.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/line-numbers.js"></script>
+    <script src="js/syntax-highlight.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/file-operations.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/share.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
