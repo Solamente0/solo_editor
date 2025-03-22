@@ -34,7 +34,7 @@ JavaScript, Python, Java, C++, C#, PHP, Ruby, Go, Swift, Kotlin, Rust, TypeScrip
 
 1. Clone the repository:
    ```
-   git clone https://github.com/solamente/elegant-code-editor.git
+   git clone https://github.com/solamente0/elegant-code-editor.git
    ```
 
 2. Open `index.html` in your web browser.
@@ -44,7 +44,7 @@ That's it! No build process or server setup required.
 ## Project Structure
 
 ```
-solamente-editor/
+solo-editor/
 │
 ├── index.html                 # Main HTML entry point
 │
