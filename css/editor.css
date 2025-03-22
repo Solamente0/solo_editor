@@ -37,7 +37,7 @@
     user-select: none;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.03);
-    z-index: 2; /* Higher z-index than the editor */
+    z-index: 0; /* Higher z-index than the editor */
 }
 
 /* Editor focus state */
